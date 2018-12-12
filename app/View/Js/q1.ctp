@@ -86,6 +86,7 @@
 <script>
     var globaldTableObj;
     var rowCount = 0;
+    /*If you want to add more column in table just add here.*/
     var fieldList = [
         {label: "Description", name: "description", type: "textarea"},
         {label: "Quantity", name: "quantity", type: "text"},
