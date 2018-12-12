@@ -69,12 +69,16 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
+                                                    <?php if(empty($dish_data['ingredient'])){ ?>    
+                                                    <td colspan="2">No ingredient to show.</td>
+                                                    <?php }else{ ?>
                                                         <?php foreach($dish_data['ingredient'] as $ing => $ing_qty):?>
                                                         <tr>
                                                             <td style="width:50%"><?php echo $ing; ?></td>
                                                             <td><?php echo $ing_qty; ?></td>
                                                         </tr>
                                                         <?php endforeach;?>
+                                                        <?php } ?>
                                                     </tbody>
                                                 </table>
                                                 <br/>
