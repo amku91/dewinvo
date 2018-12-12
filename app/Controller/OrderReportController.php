@@ -13,8 +13,37 @@ class OrderReportController extends AppController {
         $this->loadModel('Portion');
         $portions = $this->Portion->find('all', array('conditions' => array('Portion.valid' => 1), 'recursive' => 2));
         // debug($portions);exit;
+        
+        // Portion Report data from database
+        $portionData = [];
+        //portion data
+        foreach ($portions as $key => $PortionDetail) {
+            //print_r($OrderDetail);die;
+            foreach ($PortionDetail["PortionDetail"] as $ikey => $value) {
+                //print_r($value);die;
+                $portionData[$PortionDetail["Portion"]["item_id"]][$PortionDetail["Item"]["id"]][$value["Part"]["name"]] = $value["value"];
+            }
+            
+        }
+       //debug($portionData);
+       
+       // Order Report data from database
+       $orderData = array();
+        
+        foreach ($orders as $key => $OrderDetail) {
+            //print_r($OrderDetail);die;
+            foreach ($OrderDetail["OrderDetail"] as $ikey => $value) {
+                //print_r($value);die;
+                $orderData[$OrderDetail["Order"]["name"]][$value["Item"]["name"]] = $value;
+                $orderData[$OrderDetail["Order"]["name"]][$value["Item"]["name"]]["ingredient"] = ((isset($portionData[$OrderDetail["Order"]["id"]]) && isset($portionData[$OrderDetail["Order"]["id"]][$value["Item"]["id"]])) ? $portionData[$OrderDetail["Order"]["id"]][$value["Item"]["id"]] : array());
+            }
+            
+        }
+        
+        //Assign to order report data
+        $order_reports = $orderData;
         // To Do - write your own array in this format
-        $order_reports = array('Order 1' => array(
+        $order_reports_static = array('Order 1' => array(
                 'Seafood Fried Rice' => array(
                     "quantity" => 1,
                     "ingredient" => array(
