@@ -123,8 +123,8 @@
                     $(textID).show();
                 },
                 keyup: function (e) {
-                        if (e.which === 13)
-                            $input.blur();
+//                        if (e.which === 13)
+//                            $input.blur();
                 }
             });
 
@@ -144,8 +144,8 @@
                     $(textID).show();
                 },
                 keyup: function (e) {
-                        if (e.which === 13)
-                            $input.blur();
+//                        if (e.which === 13)
+//                            $input.blur();
                 }
             });
         }
