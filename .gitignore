@@ -2,5 +2,7 @@
 
 uploads
 
+nbproject
+
 app/webroot/upload
 app/tmp/*
